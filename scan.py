@@ -138,7 +138,8 @@ for Raw_HomeWorkFile in HomeWorkFileList:
         '大': '', '小': '', '测': '', '验': '', '考': '', '试': '',
         '报': '', '告': '', '课': '', '堂': '', '练': '', '习': '',
         '实': '', '验': '', ' ': '', '+': '', '-': '', '_': '',
-        '\t': '', '*': '', '副': '', '本': '',
+        '\t': '', '*': '', '副': '', '本': '', '(': '', ')': '',
+        '（': '', '）': ''
     }
     for k, v in rmap.items():
         HomeWorkFile = HomeWorkFile.replace(k, v)
@@ -162,17 +163,17 @@ if len(FailedList) > 0:
     print('====================')
 
 # 查询一下学生是否都交齐了
-fnbak =[]# 备份文件信息防止反复读取
+fnbak = []  # 备份文件信息防止反复读取
 for i in range(1, HomeWorkNum + 1):
     fs = os.listdir(os.path.join(RenameDir, str(i)))
     for f in fs:
         # 删掉后缀
         f = f.split('.')[0]
         fnbak.append(f)
-NotUploadList = {}#(学号，姓名，N)
+NotUploadList = {}  # (学号，姓名，N)
 findNU = False
 for i in range(1, HomeWorkNum + 1):
-    NotUploadList[i]=[]
+    NotUploadList[i] = []
     for student in student_list:
         FullMatchStr = student[1] + '-' + student[0] + '-第' + str(i) + '次作业'
         if fnbak.count(FullMatchStr) == 0:
